@@ -1,20 +1,24 @@
 .button {
-    width: 90px;
-    height: 20px;
-    color: white;
-    background-color: cornflowerblue;
-    border: 2px solid white;
-    border-radius: 20px;
-    transition: background-color 0.3s ease, transform 0.2s ease;
-    cursor: pointer;
+    width: 100px;
+    height: 40px;
+    font-size: 16px;
+    border-radius: 15px;
+    margin-left: 10px;
+    background-color: #3498db;
+    color: #fff;
+    transition: background-color 0.3s ease-in-out;
 }
 
 .button:hover {
-    background-color: dodgerblue;
+    background-color: #5fa7e3;
     transform: scale(1.1);
 }
 .button.disabled {
-    background-color: lightgray;
-    border: 2px solid darkgray;
+    background-color: #7f8c8d;
+    border: 2px solid #95a5a6;
     cursor: not-allowed;
+    color: #95a5a6;
+}
+.button.disabled:hover {
+    background-color: #7f8c8d;
 }
