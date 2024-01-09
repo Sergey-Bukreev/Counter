@@ -1,7 +1,8 @@
 
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import './App.css';
-import { Button } from "./components/myButton/Button";
+import {Counter} from "./layout/counter/Counter";
+import {Settings} from "./layout/settings/Settings";
 
 function App() {
 
@@ -40,39 +41,11 @@ function App() {
     const onChangeMaxNum = (e:ChangeEvent<HTMLInputElement>)=> {setMaxNum(Number(e.currentTarget.value))}
     const onChangeMinNum = (e:ChangeEvent<HTMLInputElement>)=> {setMinNum(Number(e.currentTarget.value))}
 
-    const numberClass = num === maxNum ? 'maxCount' : '';
-    const isResetDisabled = num === minNum;
-    const isAddNumDisabled = num === maxNum;
 
     return (
         <div className="App">
-            <div className={"contentWrapper"}>
-                <div className={"settingWrapper" }>
-                   <div className={"itemSetWrapper"}>
-                       <h3>Max Value</h3>
-                       <input type={"number"} value={maxNum} onChange={onChangeMaxNum}/>
-                   </div>
-                    <div className={"itemSetWrapper"}>
-                        <h3>Min Value</h3>
-                        <input type={"number"} value={minNum} onChange={onChangeMinNum}/>
-                    </div>
-                </div>
-                <div className={"buttonWrapper"}>
-                    <Button title={"SET"} callBack={addSettings} disabled={isAddNumDisabled} />
-                </div>
-            </div>
-
-
-            <div className={"contentWrapper"}>
-                <div className={`numberWrapper ${numberClass}`}>
-                    <h1>{num}</h1>
-                </div>
-                <div className={"buttonWrapper"}>
-                    <Button title={"ADD"} callBack={() => { addNum() }} disabled={isAddNumDisabled} />
-                    <Button title={"RESET"} callBack={() => { resetNum(); }} disabled={isResetDisabled} />
-                </div>
-            </div>
-
+            <Counter num={num} minNum={minNum} maxNum={maxNum} addNum={addNum} resetNum={resetNum} />
+            <Settings maxNum={maxNum} onChangeMaxNum={onChangeMaxNum} minNum={minNum} onChangeMinNum={onChangeMinNum} addSettings={addSettings}  />
         </div>
     );
 }
