@@ -10,11 +10,11 @@ type CounterPropsType ={
 }
 
 export const Counter:React.FC<CounterPropsType> = (props:CounterPropsType) => {
-    const numberClass = props.num === props.maxNum ? 'maxCount' : '';
-    const isAddNumDisabled = props.num === props.maxNum;
-    const isResetDisabled = props.num === props.minNum;
-const addNumHandler = ()=>{props.addNum()}
-    const resetNumHandler = ()=> {props.resetNum()}
+    const numberClass:"maxCount" | ""  = props.num === props.maxNum ? 'maxCount' : '';
+    const isAddNumDisabled:boolean = props.num === props.maxNum;
+    const isResetDisabled:boolean = props.num === props.minNum;
+const addNumHandler = ():void=>{props.addNum()}
+    const resetNumHandler = ():void=> {props.resetNum()}
     return (
         <div className={"contentWrapper"}>
             <div className={`numberWrapper ${numberClass}`}>

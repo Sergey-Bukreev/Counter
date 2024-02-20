@@ -1,10 +1,10 @@
 
-import React, {ChangeEvent, useEffect, useState} from 'react';
+import React, { useEffect} from 'react';
 import './App.css';
 import {Counter} from "./layout/counter/Counter";
 import {Settings} from "./layout/settings/Settings";
 import {useDispatch, useSelector} from "react-redux";
-import {AppRootState, store} from "./store/store";
+import {AppRootState} from "./store/store";
 import {
     addNumAC, AddNumActionType,
     addSettingAC, AddSettingActionTYpe,
@@ -13,7 +13,7 @@ import {
      resetNumAC, ResetNumActionType, setMaxNumAC, setMinNumAC, setNumAC
 } from "./store/counter-reducer";
 
-function App() {
+function App():JSX.Element {
 
     const dispatch = useDispatch();
     const num:number = useSelector((state:AppRootState)=> state.counter.num)
@@ -25,40 +25,39 @@ function App() {
     const addSetting = ():AddSettingActionTYpe => dispatch(addSettingAC());
     const changeMaxNum = (newMaxNum: number):ChangeMaxNumActionType => dispatch(changeMaxNumAC(newMaxNum));
     const changeMinNum = (newMinNum: number):ChangeMinNumActionType => dispatch(changeMinNumAC(newMinNum));
-    // useEffect(() => {
-    //     let valueCounter = localStorage.getItem('value');
-    //     if (valueCounter) {
-    //         dispatch(setNumAC(JSON.parse(valueCounter)));
-    //     }
-    // }, []);
-    //
-    // useEffect(() => {
-    //     localStorage.setItem('value', JSON.stringify(num));
-    // }, [num]);
-    //
-    // useEffect(() => {
-    //     let minValueCounter = localStorage.getItem('minValue');
-    //     if (minValueCounter) {
-    //         // Замени вызов на setMinNum
-    //         dispatch(setMinNumAC(JSON.parse(minValueCounter)));
-    //     }
-    // }, []);
-    //
-    // useEffect(() => {
-    //     localStorage.setItem('minValue', JSON.stringify(minNum));
-    // }, [minNum]);
-    //
-    // useEffect(() => {
-    //     let maxValueCounter = localStorage.getItem('maxValue');
-    //     if (maxValueCounter) {
-    //         // Замени вызов на setMaxNum
-    //         dispatch(setMaxNumAC(JSON.parse(maxValueCounter)));
-    //     }
-    // }, []);
-    //
-    // useEffect(() => {
-    //     localStorage.setItem('maxValue', JSON.stringify(maxNum));
-    // }, [maxNum]);
+
+    useEffect(():void => {
+        let valueCounter:string | null = localStorage.getItem('value');
+        if (valueCounter) {
+            dispatch(setNumAC(JSON.parse(valueCounter)));
+        }
+    }, []);
+
+    useEffect(():void => {
+        localStorage.setItem('value', JSON.stringify(num));
+    }, [num]);
+
+    useEffect(():void => {
+        let minValueCounter:string | null = localStorage.getItem('minValue');
+        if (minValueCounter) {
+            dispatch(setMinNumAC(JSON.parse(minValueCounter)));
+        }
+    }, []);
+
+    useEffect(():void => {
+        localStorage.setItem('minValue', JSON.stringify(minNum));
+    }, [minNum]);
+
+    useEffect(():void => {
+        let maxValueCounter:string | null = localStorage.getItem('maxValue');
+        if (maxValueCounter) {
+            dispatch(setMaxNumAC(JSON.parse(maxValueCounter)));
+        }
+    }, []);
+
+    useEffect(():void => {
+        localStorage.setItem('maxValue', JSON.stringify(maxNum));
+    }, [maxNum]);
 
     return (
         <div className="App">

@@ -10,12 +10,8 @@ type SettingsPropsTypes = {
 
 }
 export const Settings = (props:SettingsPropsTypes) => {
-    const onChangeMaxNum =(event:ChangeEvent<HTMLInputElement>)=> {
-        props.changeMaxNum(+event.currentTarget.value)
-    }
-    const onChangeMinNum = (event:ChangeEvent<HTMLInputElement>)=> {
-        props.changeMinNum(+event.currentTarget.value)
-    }
+    const onChangeMaxNum =(event:ChangeEvent<HTMLInputElement>)=> {props.changeMaxNum(+event.currentTarget.value)}
+    const onChangeMinNum = (event:ChangeEvent<HTMLInputElement>)=> {props.changeMinNum(+event.currentTarget.value)}
     return (
         <div className={"contentWrapper"}>
             <div className={"settingWrapper" }>
